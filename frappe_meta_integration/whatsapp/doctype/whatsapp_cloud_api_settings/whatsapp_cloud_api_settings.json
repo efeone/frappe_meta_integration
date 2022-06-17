@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-06-17 14:44:35.657847",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "access_token",
+  "business_account_id",
+  "column_break_6",
+  "phone_number_id",
+  "webhook_verify_token"
+ ],
+ "fields": [
+  {
+   "fieldname": "access_token",
+   "fieldtype": "Password",
+   "in_list_view": 1,
+   "label": "Access Token",
+   "length": 300,
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_account_id",
+   "fieldtype": "Data",
+   "label": "Business Account ID"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone_number_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone Number ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "webhook_verify_token",
+   "fieldtype": "Data",
+   "label": "Webhook Verify Token"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2022-06-17 14:48:44.514958",
+ "modified_by": "Administrator",
+ "module": "WhatsApp",
+ "name": "WhatsApp Cloud API Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
