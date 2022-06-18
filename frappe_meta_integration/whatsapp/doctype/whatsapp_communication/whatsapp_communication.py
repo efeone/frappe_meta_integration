@@ -113,7 +113,7 @@ class WhatsAppCommunication(Document):
 		media_file_path = frappe.get_doc("File", {"file_url": self.media_file}).get_full_path()
 		access_token = self.get_access_token()
 		api_base_url = "https://graph.facebook.com/v13.0"
-		phone_number_id = frappe.db.get_single_value("WhatsApp Settings", "phone_number_id")
+		phone_number_id = frappe.db.get_single_value("WhatsApp Cloud API Settings", "phone_number_id")
 
 		if not self.media_mime_type:
 			self.media_mime_type = mimetypes.guess_type(self.media_file)[0]
