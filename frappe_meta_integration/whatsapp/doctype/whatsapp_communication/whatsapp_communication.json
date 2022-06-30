@@ -28,7 +28,12 @@
   "media_file",
   "media_image",
   "media_uploaded",
-  "naming_series"
+  "naming_series",
+  "message_template_information_section",
+  "whatsapp_message_template",
+  "template_language",
+  "parameter_count",
+  "parameters"
  ],
  "fields": [
   {
@@ -81,7 +86,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Message Type",
-   "options": "Text\nImage\nAudio\nVideo\nDocument",
+   "options": "Text\nImage\nAudio\nVideo\nDocument\nTemplate",
    "read_only_depends_on": "message_id"
   },
   {
@@ -112,7 +117,7 @@
    "read_only_depends_on": "message_id"
   },
   {
-   "depends_on": "eval:doc.message_type!=\"Text\"",
+   "depends_on": "eval:(doc.message_type!=\"Text\" && doc.message_type!=\"Template\")",
    "fieldname": "media_information_section",
    "fieldtype": "Section Break",
    "label": "Media Information"
@@ -182,12 +187,48 @@
    "options": "WA-MSG-.YYYY.-",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "whatsapp_message_template",
+   "fieldtype": "Link",
+   "label": "WhatsApp Message Template",
+   "options": "WhatsApp Message Template",
+   "read_only_depends_on": "message_id"
+  },
+  {
+   "depends_on": "eval:doc.message_type==\"Template\"",
+   "fieldname": "message_template_information_section",
+   "fieldtype": "Section Break",
+   "label": "Message Template Information"
+  },
+  {
+   "fetch_from": "whatsapp_message_template.language_code",
+   "fieldname": "template_language",
+   "fieldtype": "Data",
+   "label": "Template Language",
+   "read_only": 1
+  },
+  {
+   "depends_on": "parameter_count",
+   "fieldname": "parameters",
+   "fieldtype": "Table",
+   "label": "Parameters",
+   "options": "WhatsApp Message Template Item",
+   "read_only_depends_on": "message_id"
+  },
+  {
+   "fetch_from": "whatsapp_message_template.parameter_count",
+   "fieldname": "parameter_count",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Parameter Count",
+   "read_only": 1
   }
  ],
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-17 14:49:45.591761",
+ "modified": "2022-06-30 15:29:10.247969",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Communication",
