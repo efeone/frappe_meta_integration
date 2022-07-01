@@ -124,6 +124,8 @@ class WhatsAppCommunication(Document):
 			self.message_id = response.json().get("messages")[0]["id"]
 			self.status = "Sent"
 			self.save(ignore_permissions=True)
+			if self.is_welcome_message:
+				frappe.msgprint(("Welcome Message sent to {0} ").format(self.to), alert=True)
 			return response.json()
 		else:
 			frappe.throw(response.json().get("error").get("message"))
