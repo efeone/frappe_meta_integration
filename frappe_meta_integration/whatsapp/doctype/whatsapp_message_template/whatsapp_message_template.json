@@ -1,0 +1,79 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:template_name",
+ "creation": "2022-06-30 11:23:25.726343",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "template_name",
+  "language_code",
+  "is_existing_template",
+  "parameter_count",
+  "parameters"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Template Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "description": "Currently you are only authorized to use existing templates.",
+   "fieldname": "is_existing_template",
+   "fieldtype": "Check",
+   "label": "Is Existing Template",
+   "read_only": 1
+  },
+  {
+   "depends_on": "parameter_count",
+   "fieldname": "parameters",
+   "fieldtype": "Table",
+   "label": "Parameters",
+   "mandatory_depends_on": "parameter_count",
+   "options": "WhatsApp Message Template Item"
+  },
+  {
+   "fieldname": "language_code",
+   "fieldtype": "Select",
+   "label": "Language Code",
+   "options": "en\nen_US\nen_UK",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "parameter_count",
+   "fieldtype": "Int",
+   "label": "Parameter Count"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-06-30 14:43:49.451865",
+ "modified_by": "Administrator",
+ "module": "WhatsApp",
+ "name": "WhatsApp Message Template",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

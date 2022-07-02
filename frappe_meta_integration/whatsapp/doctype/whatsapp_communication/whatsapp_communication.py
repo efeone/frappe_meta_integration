@@ -11,6 +11,7 @@ class WhatsAppCommunication(Document):
 	def validate(self):
 		self.validate_image_attachment()
 		self.validate_mandatory()
+		self.validate_template()
 
 		if self.message_type == "Audio" and self.media_file:
 			self.preview_html = f"""
@@ -37,6 +38,20 @@ class WhatsAppCommunication(Document):
 	def validate_mandatory(self):
 		if self.message_type == "Text" and not self.message_body:
 			frappe.throw("Message Body is required for type Text.")
+		if self.message_type == "Template" and not self.whatsapp_message_template:
+			frappe.throw("Message Template is required for type Template.")
+
+	def validate_parameters(self):
+		if self.message_type == "Template":
+			for parameter in self.parameters:
+				if not parameter.value:
+					frappe.throw('Parameter Value is Missing for <b>{0}</b> at row : <b>{1}</b>.'.format(parameter.parameter, parameter.idx))
+
+	def validate_template(self):
+		if self.message_type == "Template":
+			if self.parameter_count:
+				if self.parameter_count != len(self.parameters):
+					frappe.throw("Parameter count and given number of parameters doesn't match!")
 
 	def get_access_token(self):
 		return frappe.utils.password.get_decrypted_password(
@@ -80,9 +95,21 @@ class WhatsAppCommunication(Document):
 				response_data[self.message_type.lower()]["filename"] = self.media_filename
 				response_data[self.message_type.lower()]["caption"] = self.media_caption
 
-		print("\n\n\n\n\n\n")
-		print(response_data)
-		print("\n\n\n\n\n\n")
+		if self.message_type == "Template":
+			self.validate_parameters()
+			parameters = []
+			for parameter in self.parameters:
+				parameters.append({
+					 "type": "text",
+					 "text": parameter.value
+				})
+			components_dict = [
+	            {
+	                "type": "body",
+	                "parameters": parameters
+	            }
+	        ]
+			response_data["template"] = {"name": self.whatsapp_message_template, "language": { "code": self.template_language }, "components":components_dict }
 
 		response = requests.post(
 			endpoint,
@@ -93,14 +120,12 @@ class WhatsAppCommunication(Document):
 			},
 		)
 
-		print("\n\n\n\n\n\n\n\n")
-		print(response.json())
-		print("\n\n\n\n\n\n\n\n")
-
 		if response.ok:
 			self.message_id = response.json().get("messages")[0]["id"]
 			self.status = "Sent"
 			self.save(ignore_permissions=True)
+			if self.is_welcome_message:
+				frappe.msgprint(("Welcome Message sent to {0} ").format(self.to), alert=True)
 			return response.json()
 		else:
 			frappe.throw(response.json().get("error").get("message"))
@@ -136,9 +161,6 @@ class WhatsAppCommunication(Document):
 				"Authorization": "Bearer " + access_token,
 			},
 		)
-		print("\n\n\n\n\n\n\n\n")
-		print(response.json())
-		print("\n\n\n\n\n\n\n\n")
 
 		if response.ok:
 			self.media_id = response.json().get("id")

@@ -10,7 +10,10 @@
   "business_account_id",
   "column_break_6",
   "phone_number_id",
-  "webhook_verify_token"
+  "webhook_verify_token",
+  "general_configuration_section",
+  "welcome_message_template",
+  "send_message_on_customer_creation"
  ],
  "fields": [
   {
@@ -41,12 +44,30 @@
    "fieldname": "webhook_verify_token",
    "fieldtype": "Data",
    "label": "Webhook Verify Token"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "general_configuration_section",
+   "fieldtype": "Section Break",
+   "label": "General Configuration"
+  },
+  {
+   "fieldname": "welcome_message_template",
+   "fieldtype": "Link",
+   "label": "Welcome Message Template",
+   "options": "WhatsApp Message Template"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_message_on_customer_creation",
+   "fieldtype": "Check",
+   "label": "Send Message on Customer Creation"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-06-17 14:48:44.514958",
+ "modified": "2022-07-01 13:12:29.383809",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Cloud API Settings",
