@@ -1,0 +1,19 @@
+[
+  {
+   "default_value": null,
+   "doc_type": "Notification",
+   "docstatus": 0,
+   "doctype": "Property Setter",
+   "doctype_or_field": "DocField",
+   "field_name": "channel",
+   "modified": "2022-07-06 15:43:38.505231",
+   "name": "Notification-channel-options",
+   "parent": null,
+   "parentfield": null,
+   "parenttype": null,
+   "property": "options",
+   "property_type": "Select",
+   "row_name": null,
+   "value": "Email\nSlack\nSystem Notification\nSMS\nWhatsApp"
+  }
+]
