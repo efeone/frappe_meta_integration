@@ -4,6 +4,8 @@
 import frappe
 import requests
 import mimetypes
+from six import string_types
+
 
 from frappe.model.document import Document
 
@@ -126,6 +128,11 @@ class WhatsAppCommunication(Document):
 			self.save(ignore_permissions=True)
 			if self.is_welcome_message:
 				frappe.msgprint(("Welcome Message sent to {0} ").format(self.to), alert=True)
+			else:
+				if self.message_type not in ("Audio", "Image", "Video", "Document"):
+					frappe.msgprint(("WhatsApp Message sent to {0} ").format(self.to), alert=True)
+				else:
+					frappe.msgprint(("Attachment sent to {0} ").format(self.to), alert=True)
 			return response.json()
 		else:
 			frappe.throw(response.json().get("error").get("message"))
@@ -168,3 +175,39 @@ class WhatsAppCommunication(Document):
 			self.save(ignore_permissions=True)
 		else:
 			frappe.throw(response.json().get("error").get("message"))
+
+	@classmethod
+	def send_whatsapp_message(self, receiver_list, message, doctype, docname, media=None, file_name=None):
+		if isinstance(receiver_list, string_types):
+			receiver_list = loads(receiver_list)
+			if not isinstance(receiver_list, list):
+				receiver_list = [receiver_list]
+
+		for rec in receiver_list:
+			"""
+			Iterate receiver_list and send message to each recepient
+			"""
+			message = self.create_whatsapp_message(rec, message, doctype, docname)
+			message.send_message() #Send Message ( Text Type )
+			if media and file_name:
+				media_message = self.create_whatsapp_message(rec, message, doctype, docname, media, file_name)
+				media_message.upload_media() #Upload Attachment
+				media_message.send_message() #Send Attachment ( Doc Type )
+
+	def create_whatsapp_message(to, message, doctype=None, docname=None, media=None, file_name=None):
+		"""
+		Create WhatsApp Communication with given data.
+		"""
+		wa_msg = frappe.new_doc('WhatsApp Communication')
+		wa_msg.to = to
+		wa_msg.reference_dt = doctype
+		wa_msg.reference_dn = docname
+		if media:
+			wa_msg.message_type = "Document"
+			wa_msg.media_filename = file_name
+			wa_msg.media_file = media
+		else:
+			wa_msg.message_type = "Text"
+			wa_msg.message_body = message
+		wa_msg.save(ignore_permissions=True)
+		return wa_msg
