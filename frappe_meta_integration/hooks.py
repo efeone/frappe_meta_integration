@@ -32,7 +32,8 @@ app_license = "MIT"
 
 # include js in doctype views
 doctype_js = {
-	"Customer" : "whatsapp/public/js/customer.js"
+	"Customer" : "whatsapp/public/js/customer.js",
+	"Notification" : "whatsapp/public/js/notification.js"
 	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -89,9 +90,9 @@ doctype_js = {
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Notification": "frappe_meta_integration.whatsapp.overrides.notification.SendNotification"
+}
 
 # Document Events
 # ---------------
@@ -102,6 +103,8 @@ doc_events = {
 		"after_insert": "frappe_meta_integration.whatsapp.docevents.customer_after_insert",
 	}
 }
+
+fixtures = ["Property Setter"]
 
 # Scheduled Tasks
 # ---------------

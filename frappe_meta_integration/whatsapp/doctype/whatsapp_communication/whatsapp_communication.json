@@ -33,7 +33,11 @@
   "whatsapp_message_template",
   "template_language",
   "parameter_count",
-  "parameters"
+  "is_welcome_message",
+  "parameters",
+  "references_section",
+  "reference_dt",
+  "reference_dn"
  ],
  "fields": [
   {
@@ -223,12 +227,41 @@
    "hidden": 1,
    "label": "Parameter Count",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_welcome_message",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Is Welcome Message",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "references_section",
+   "fieldtype": "Section Break",
+   "label": "References"
+  },
+  {
+   "fieldname": "reference_dt",
+   "fieldtype": "Link",
+   "label": "Reference Dt",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "depends_on": "reference_dt",
+   "fieldname": "reference_dn",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Dn",
+   "options": "reference_dt",
+   "read_only": 1
   }
  ],
  "image_field": "media_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-30 15:29:10.247969",
+ "modified": "2022-07-01 18:08:01.968476",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Communication",

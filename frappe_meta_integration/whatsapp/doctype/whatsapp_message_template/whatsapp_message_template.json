@@ -8,13 +8,17 @@
  "engine": "InnoDB",
  "field_order": [
   "template_name",
+  "whatsapp_message_format",
+  "column_break_7",
   "language_code",
   "is_existing_template",
   "parameter_count",
+  "parameters_section",
   "parameters"
  ],
  "fields": [
   {
+   "description": "For Existing Template you should need to keep name as it is in Whats App Cloud API",
    "fieldname": "template_name",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -25,11 +29,11 @@
   },
   {
    "default": "1",
-   "description": "Currently you are only authorized to use existing templates.",
+   "description": "Check if you're using templates from Whats App Cloud API",
    "fieldname": "is_existing_template",
    "fieldtype": "Check",
-   "label": "Is Existing Template",
-   "read_only": 1
+   "in_list_view": 1,
+   "label": "Is Existing Template"
   },
   {
    "depends_on": "parameter_count",
@@ -42,6 +46,7 @@
   {
    "fieldname": "language_code",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Language Code",
    "options": "en\nen_US\nen_UK",
    "reqd": 1
@@ -51,11 +56,26 @@
    "fieldname": "parameter_count",
    "fieldtype": "Int",
    "label": "Parameter Count"
+  },
+  {
+   "fieldname": "whatsapp_message_format",
+   "fieldtype": "Small Text",
+   "label": "WhatsApp Message Format",
+   "read_only_depends_on": "is_existing_template"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "parameters_section",
+   "fieldtype": "Section Break",
+   "label": "Parameters"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-30 14:43:49.451865",
+ "modified": "2022-07-06 11:33:16.264385",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Message Template",
