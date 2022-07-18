@@ -1,0 +1,75 @@
+{
+ "category": "Administration",
+ "charts": [],
+ "charts_label": "",
+ "creation": "2022-07-18 13:02:25.720092",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends_another_page": 0,
+ "hide_custom": 0,
+ "icon": "integration",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "Meta Integration",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WhatsApp Cloud API Settings",
+   "link_to": "WhatsApp Cloud API Settings",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WhatsApp Message Template",
+   "link_to": "WhatsApp Message Template",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WhatsApp Communication",
+   "link_to": "WhatsApp Communication",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  }
+ ],
+ "modified": "2022-07-18 13:02:25.720092",
+ "modified_by": "Administrator",
+ "module": "WhatsApp",
+ "name": "Meta Integration",
+ "onboarding": "",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 1,
+ "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "WhatsApp Cloud API Settings",
+   "link_to": "WhatsApp Cloud API Settings",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "WhatsApp Message Template",
+   "link_to": "WhatsApp Message Template",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "WhatsApp Communication",
+   "link_to": "WhatsApp Communication",
+   "type": "DocType"
+  }
+ ],
+ "shortcuts_label": "Quick Access"
+}
