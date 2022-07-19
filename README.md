@@ -10,6 +10,13 @@ Meta Cloud API Integration for frappe framework
 2. Supports Text, Media and Template Based WhatsApp Messaging.
 3. Send Welcome Message on Customer Creation.
 
+
+### Screenshots
+
+1. Workspace
+![Screenshot from 2022-07-18 13-15-07](https://user-images.githubusercontent.com/43608142/179481311-df05659d-b29e-4b07-8bec-e0fd391a161d.png)
+
+
 ---
 
 ### How to Install
