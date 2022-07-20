@@ -100,7 +100,10 @@ override_doctype_class = {
 
 doc_events = {
 	"Customer": {
-		"after_insert": "frappe_meta_integration.whatsapp.docevents.customer_after_insert",
+		"on_update": "frappe_meta_integration.whatsapp.docevents.customer_on_update",
+	},
+	"Patient": {
+		"on_update": "frappe_meta_integration.whatsapp.docevents.patient_on_update",
 	}
 }
 
