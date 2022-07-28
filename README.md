@@ -6,8 +6,8 @@ Meta Cloud API Integration for frappe framework
 
 ### Main Features
 
-1. Supports Erpnext Version 13
-2. Supports Text, Media and Template Based WhatsApp Messaging.
+1. Supports Frappe Version 13
+2. Supports Text, Media and Template Based Whats App Messaging.
 3. Send Welcome Message on Customer Creation.
 
 
@@ -34,7 +34,7 @@ Meta Cloud API Integration for frappe framework
 - Meta for Developers Account
 - WhatsApp configured there in Meta Developer Account
 - Verified Business on Meta
-- Verified WhatsApp Number and Permanent Token
+- Verified Whats App Number and Permanent Token
 
 ---
 
@@ -42,7 +42,6 @@ Meta Cloud API Integration for frappe framework
 ### Dependencies:
 
 - [Frappe](https://github.com/frappe/frappe)
-- [Erpnext](https://github.com/frappe/erpnext)
 
 ---
 
