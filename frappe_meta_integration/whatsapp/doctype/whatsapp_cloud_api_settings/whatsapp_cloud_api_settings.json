@@ -12,8 +12,7 @@
   "phone_number_id",
   "webhook_verify_token",
   "general_configuration_section",
-  "welcome_message_template",
-  "send_message_on_customer_creation"
+  "welcome_message_template"
  ],
  "fields": [
   {
@@ -56,18 +55,12 @@
    "fieldtype": "Link",
    "label": "Welcome Message Template",
    "options": "WhatsApp Message Template"
-  },
-  {
-   "default": "0",
-   "fieldname": "send_message_on_customer_creation",
-   "fieldtype": "Check",
-   "label": "Send Message on Customer Creation"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-07-01 13:12:29.383809",
+ "modified": "2022-07-27 11:28:15.099847",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Cloud API Settings",

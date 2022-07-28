@@ -32,7 +32,6 @@ app_license = "MIT"
 
 # include js in doctype views
 doctype_js = {
-	"Customer" : "whatsapp/public/js/customer.js",
 	"Notification" : "whatsapp/public/js/notification.js"
 	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -97,15 +96,14 @@ override_doctype_class = {
 # Document Events
 # ---------------
 # Hook on document methods and events
+# doc_events = {
+#      "*": {
+#              "on_update": "method",
+#              "on_cancel": "method",
+#              "on_trash": "method"
+#      }
+# }
 
-doc_events = {
-	"Customer": {
-		"on_update": "frappe_meta_integration.whatsapp.docevents.customer_on_update",
-	},
-	"Patient": {
-		"on_update": "frappe_meta_integration.whatsapp.docevents.patient_on_update",
-	}
-}
 
 fixtures = ["Property Setter"]
 

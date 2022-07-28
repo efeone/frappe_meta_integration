@@ -1,0 +1,1 @@
+frappe_meta_integration.patches.v1_0.remove_erpnext_dependency #28-07-2022
