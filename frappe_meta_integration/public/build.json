@@ -1,0 +1,5 @@
+{
+  "js/desk.min.js": [
+		"public/js/toolbar.js",
+	]
+}
