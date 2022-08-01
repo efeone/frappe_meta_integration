@@ -14,7 +14,7 @@ app_license = "MIT"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/frappe_meta_integration/css/frappe_meta_integration.css"
-# app_include_js = "/assets/frappe_meta_integration/js/frappe_meta_integration.js"
+app_include_js = "/assets/frappe_meta_integration/js/toolbar.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/frappe_meta_integration/css/frappe_meta_integration.css"
@@ -96,13 +96,11 @@ override_doctype_class = {
 # Document Events
 # ---------------
 # Hook on document methods and events
-# doc_events = {
-#      "*": {
-#              "on_update": "method",
-#              "on_cancel": "method",
-#              "on_trash": "method"
-#      }
-# }
+doc_events = {
+	"Contact": {
+		"validate": "frappe_meta_integration.whatsapp.docevents.contact_validate",
+	}
+}
 
 
 fixtures = ["Property Setter"]

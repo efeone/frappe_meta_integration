@@ -179,7 +179,6 @@ class WhatsAppCommunication(Document):
 	@classmethod
 	def send_whatsapp_message(self, receiver_list, message, doctype, docname, media=None, file_name=None):
 		if isinstance(receiver_list, string_types):
-			receiver_list = loads(receiver_list)
 			if not isinstance(receiver_list, list):
 				receiver_list = [receiver_list]
 
@@ -187,12 +186,9 @@ class WhatsAppCommunication(Document):
 			"""
 			Iterate receiver_list and send message to each recepient
 			"""
-			message = self.create_whatsapp_message(rec, message, doctype, docname)
-			message.send_message() #Send Message ( Text Type )
+			self.create_whatsapp_message(rec, message, doctype, docname) #For Text Message or Caption for documents
 			if media and file_name:
-				media_message = self.create_whatsapp_message(rec, message, doctype, docname, media, file_name)
-				media_message.upload_media() #Upload Attachment
-				media_message.send_message() #Send Attachment ( Doc Type )
+				self.create_whatsapp_message(rec, message, doctype, docname, media, file_name) #For Document
 
 	def create_whatsapp_message(to, message, doctype=None, docname=None, media=None, file_name=None):
 		"""
@@ -210,4 +206,6 @@ class WhatsAppCommunication(Document):
 			wa_msg.message_type = "Text"
 			wa_msg.message_body = message
 		wa_msg.save(ignore_permissions=True)
-		return wa_msg
+		if media and file_name:
+			wa_msg.upload_media() #Upload Attachment
+		wa_msg.send_message() #Send Attachment/Text Message
