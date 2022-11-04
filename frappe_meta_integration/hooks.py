@@ -32,7 +32,8 @@ app_include_js = "/assets/frappe_meta_integration/js/toolbar.js"
 
 # include js in doctype views
 doctype_js = {
-	"Notification" : "whatsapp/public/js/notification.js"
+	"Notification" : "whatsapp/public/js/notification.js",
+	"User" : "whatsapp/public/js/user.js"
 	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -99,6 +100,9 @@ override_doctype_class = {
 doc_events = {
 	"Contact": {
 		"validate": "frappe_meta_integration.whatsapp.docevents.contact_validate",
+	},
+	"User": {
+		"after_insert" : "frappe_meta_integration.whatsapp.docevents.user_after_insert"
 	}
 }
 
