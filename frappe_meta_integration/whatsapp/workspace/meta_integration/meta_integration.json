@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Meta Integration</span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WhatsApp Message Template\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WhatsApp Message Template\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WhatsApp Communication\",\"col\":3}}]",
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Meta Integration</span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WhatsApp Cloud API Settings\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WhatsApp Message Template\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WhatsApp Communication\",\"col\":4}}]",
  "creation": "2022-11-07 12:34:58.594498",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -10,7 +10,7 @@
  "idx": 0,
  "label": "Meta Integration",
  "links": [],
- "modified": "2022-11-07 12:39:17.497945",
+ "modified": "2022-11-10 12:30:13.395116",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "Meta Integration",
@@ -21,6 +21,13 @@
  "roles": [],
  "sequence_id": 10.0,
  "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "WhatsApp Cloud API Settings",
+   "link_to": "WhatsApp Cloud API Settings",
+   "type": "DocType"
+  },
   {
    "color": "Grey",
    "doc_view": "List",
