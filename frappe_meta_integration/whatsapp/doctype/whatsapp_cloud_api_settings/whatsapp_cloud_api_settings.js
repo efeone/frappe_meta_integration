@@ -8,6 +8,14 @@ frappe.ui.form.on('WhatsApp Cloud API Settings', {
 		    set_primary_action(frm);
 		  }).addClass("btn-primary");
     }
+		frm.set_query('welcome_message_template', () => {
+        return {
+            filters: {
+                docstatus: 1,
+								parameter_count: 1
+            }
+        }
+    })
 	}
 });
 
