@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_rename": 1,
  "autoname": "field:template_name",
  "creation": "2022-06-30 11:23:25.726343",
  "doctype": "DocType",
@@ -8,13 +7,19 @@
  "engine": "InnoDB",
  "field_order": [
   "template_name",
-  "whatsapp_message_format",
-  "column_break_7",
-  "language_code",
-  "is_existing_template",
+  "id",
+  "template",
+  "add_variable",
   "parameter_count",
+  "column_break_7",
+  "language",
+  "language_code",
+  "category",
+  "header",
+  "footer",
   "parameters_section",
-  "parameters"
+  "parameters",
+  "amended_from"
  ],
  "fields": [
   {
@@ -28,14 +33,6 @@
    "unique": 1
   },
   {
-   "default": "1",
-   "description": "Check if you're using templates from Whats App Cloud API",
-   "fieldname": "is_existing_template",
-   "fieldtype": "Check",
-   "in_list_view": 1,
-   "label": "Is Existing Template"
-  },
-  {
    "depends_on": "parameter_count",
    "fieldname": "parameters",
    "fieldtype": "Table",
@@ -45,23 +42,17 @@
   },
   {
    "fieldname": "language_code",
-   "fieldtype": "Select",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Language Code",
-   "options": "en\nen_US\nen_UK",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "parameter_count",
    "fieldtype": "Int",
-   "label": "Parameter Count"
-  },
-  {
-   "fieldname": "whatsapp_message_format",
-   "fieldtype": "Small Text",
-   "label": "WhatsApp Message Format",
-   "read_only_depends_on": "is_existing_template"
+   "label": "Parameter Count",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_7",
@@ -71,14 +62,67 @@
    "fieldname": "parameters_section",
    "fieldtype": "Section Break",
    "label": "Parameters"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "WhatsApp Message Template",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "label": "ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "template",
+   "fieldtype": "Code",
+   "label": "Template",
+   "options": "HTML"
+  },
+  {
+   "fieldname": "language",
+   "fieldtype": "Link",
+   "label": "Language",
+   "options": "Language",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "\nTRANSACTIONAL\nMARKETING\nOTP",
+   "reqd": 1
+  },
+  {
+   "fieldname": "header",
+   "fieldtype": "Data",
+   "label": "Header"
+  },
+  {
+   "fieldname": "footer",
+   "fieldtype": "Data",
+   "label": "Footer"
+  },
+  {
+   "fieldname": "add_variable",
+   "fieldtype": "Button",
+   "label": "Add Variable"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2022-07-06 11:33:16.264385",
+ "modified": "2022-11-10 16:32:50.759466",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Message Template",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -95,5 +139,7 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "template_name"
 }

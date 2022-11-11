@@ -8,7 +8,7 @@ frappe.ui.form.on('WhatsApp Communication', {
     frm.set_query('whatsapp_message_template', () => {
         return {
             filters: {
-                is_existing_template: 1
+                docstatus: 1
             }
         }
     })

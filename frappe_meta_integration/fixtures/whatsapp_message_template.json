@@ -1,0 +1,27 @@
+[
+ {
+  "amended_from": null,
+  "category": "TRANSACTIONAL",
+  "docstatus": 0,
+  "doctype": "WhatsApp Message Template",
+  "footer": null,
+  "header": null,
+  "id": null,
+  "language": "en",
+  "language_code": "en",
+  "modified": "2022-11-10 23:16:51.973551",
+  "name": "welcome_message",
+  "parameter_count": 1,
+  "parameters": [
+   {
+    "parameter": "user",
+    "parent": "welcome_message",
+    "parentfield": "parameters",
+    "parenttype": "WhatsApp Message Template",
+    "value": null
+   }
+  ],
+  "template": "Hi {{1}},\n\nYou are added as new user. Do you like to get notified here ?",
+  "template_name": "welcome_message"
+ }
+]
