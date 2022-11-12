@@ -7,15 +7,51 @@ Meta Cloud API Integration for frappe framework
 ### Main Features
 
 1. Supports Frappe Version 13
-2. Supports Text, Media and Template Based Whats App Messaging.
-3. Send Welcome Message on Customer Creation.
+2. Supports Text, Media and Template Based WhatsApp Messaging.
+3. Sends a Welcome Message on User Creation.
 
 
 ### Screenshots
 
 1. Workspace
-![Screenshot from 2022-07-18 13-15-07](https://user-images.githubusercontent.com/43608142/179481311-df05659d-b29e-4b07-8bec-e0fd391a161d.png)
 
+    ![Screenshot from 2022-07-18 13-15-07](https://user-images.githubusercontent.com/43608142/179481311-df05659d-b29e-4b07-8bec-e0fd391a161d.png)
+
+
+2. WhatsApp Cloud API Settings
+
+    ![WhatsApp Cloud API Settings](https://user-images.githubusercontent.com/95274912/201276165-3039a7d4-44f3-4bf2-9a04-dd27a05a0e84.png)
+  
+    ![token verification](https://user-images.githubusercontent.com/95274912/201276360-21a41b58-6e97-4168-a592-cea02b8fbbe4.png)
+
+
+    2.1 Token Verification
+    
+      - Using your Facebook developer account, create the WhatsApp Business API. 
+    
+      - The WhatsApp Business API is used to set the Access Token, Phone Number ID, and WhatsApp Business Account ID. 
+    
+      - These Data is passed to WhatsApp Cloud API Settings and then saved.
+    
+      - Verify the token using the "Verify Token" button. A pop-up window appears on the screen.
+    
+      - Add the Whatsapp number and submit.
+    
+
+3. WhatsApp Communication
+
+   ![whatsup communication](https://user-images.githubusercontent.com/95274912/201277603-d4e79b63-4e13-492f-8aa1-4172b3396cad.png)
+
+- There are three message types available in WhatsApp communication: text, document, and template.
+
+    3.1 Message Type : Text
+    - A text field for simple text is provided here.
+          
+    3.2 Message Type : Document
+    - Here are some fields where media information can be entered. 
+          
+    3.3 Message Type : Template
+    - Here message templates information can be added.
 
 ---
 
@@ -32,9 +68,9 @@ Meta Cloud API Integration for frappe framework
 ### Prerequisites:
 
 - Meta for Developers Account
-- WhatsApp configured there in Meta Developer Account
+- WhatsApp configured in the Meta Developer Account
 - Verified Business on Meta
-- Verified Whats App Number and Permanent Token
+- Verified WhatsApp Number and a Permanent Token
 
 ---
 
@@ -47,7 +83,7 @@ Meta Cloud API Integration for frappe framework
 
 ### Contributing
 
-Will using for this the same guidelines from Erpnext
+Will be using the same guidelines from ERPNext
 
 1. [Issue Guidelines](https://github.com/frappe/erpnext/wiki/Issue-Guidelines)
 2. [Pull Request Requirements](https://github.com/frappe/erpnext/wiki/Contribution-Guidelines)
