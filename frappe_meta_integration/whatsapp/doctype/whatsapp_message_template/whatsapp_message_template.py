@@ -14,6 +14,10 @@ class WhatsAppMessageTemplate(Document):
 			"Language", self.language
 		).replace('-', '_')
 
+	def autoname(self):
+		self.set_template_name_and_codes()
+		self.name = self.template_name
+
 	def before_save(self):
 		self.set_template_name_and_codes()
 
