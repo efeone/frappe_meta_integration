@@ -17,6 +17,7 @@
   "category",
   "header",
   "footer",
+  "is_existing_template",
   "parameters_section",
   "parameters",
   "amended_from"
@@ -113,12 +114,19 @@
    "fieldname": "add_variable",
    "fieldtype": "Button",
    "label": "Add Variable"
+  },
+  {
+   "default": "0",
+   "description": "For Existing Template in WhatsApp Cloud API",
+   "fieldname": "is_existing_template",
+   "fieldtype": "Check",
+   "label": "Is Existing Template"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-11-10 16:32:50.759466",
+ "modified": "2022-12-12 13:13:05.037501",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Message Template",
@@ -126,6 +134,7 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -135,6 +144,7 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
