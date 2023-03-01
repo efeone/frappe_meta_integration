@@ -2,8 +2,17 @@ import frappe
 
 from frappe import _
 from frappe import publish_progress
-from frappe.core.doctype.file.file import create_new_folder
 from frappe.utils.file_manager import save_file
+
+@frappe.whitelist()
+def create_new_folder(file_name, folder):
+	"""create new folder under current parent folder"""
+	file = frappe.new_doc("File")
+	file.file_name = file_name
+	file.is_folder = 1
+	file.folder = folder
+	file.insert(ignore_if_duplicate=True)
+	return file
 
 def attach_pdf(doc, event=None, print_format=None):
     fallback_language = "en"
