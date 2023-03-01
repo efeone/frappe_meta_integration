@@ -60,6 +60,12 @@ class WhatsAppCommunication(Document):
 			"WhatsApp Cloud API Settings", "WhatsApp Cloud API Settings", "access_token"
 		)
 
+	def validate_header_media(self):
+		if self.message_type == "Template" and self.whatsapp_message_template:
+			if self.header_has_media:
+				if not self.header_media:
+					frappe.throw("`header_media` is required in selected Template.")
+
 	@frappe.whitelist()
 	def send_message(self):
 		if not self.to:
@@ -99,18 +105,56 @@ class WhatsAppCommunication(Document):
 
 		if self.message_type == "Template":
 			self.validate_parameters()
-			parameters = []
+			self.validate_header_media()
+			body_parameters = []
 			for parameter in self.parameters:
-				parameters.append({
+				body_parameters.append({
 					 "type": "text",
 					 "text": parameter.value
 				})
-			components_dict = [
-	            {
-	                "type": "body",
-	                "parameters": parameters
-	            }
-	        ]
+			if self.header_has_media:
+				if self.header_media:
+					media_file_path = frappe.utils.get_url()
+					media_file_path += self.header_media
+					headers_parameters = []
+					if self.media_type == 'image':
+						headers_parameters.append({
+							"type": "image",
+							"image": {
+								"link": media_file_path
+							}
+						})
+					if self.media_type == 'document':
+						headers_parameters.append({
+							"type": "document",
+							"document": {
+								"link": media_file_path
+							}
+						})
+					if self.media_type == 'video':
+						headers_parameters.append({
+							"type": "video",
+							"video": {
+								"link": media_file_path
+							}
+						})
+				components_dict = [
+					{
+						"type": "header",
+						"parameters": headers_parameters
+					},
+					{
+						"type": "body",
+						"parameters": body_parameters
+					}
+				]
+			else:
+				components_dict = [
+					{
+						"type": "body",
+						"parameters": body_parameters
+					}
+				]
 			response_data["template"] = {"name": self.whatsapp_message_template, "language": { "code": self.template_language }, "components":components_dict }
 
 		response = requests.post(
