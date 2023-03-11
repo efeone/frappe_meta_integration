@@ -171,12 +171,12 @@ class WhatsAppCommunication(Document):
 			self.status = "Sent"
 			self.save(ignore_permissions=True)
 			if self.is_welcome_message:
-				frappe.msgprint(("Welcome Message sent to {0} ").format(self.to), alert=True)
+				frappe.msgprint(("Welcome Message sent to {0} ").format(self.to), alert=True, indicator="green")
 			else:
 				if self.message_type not in ("Audio", "Image", "Video", "Document"):
-					frappe.msgprint(("WhatsApp Message sent to {0} ").format(self.to), alert=True)
+					frappe.msgprint(("WhatsApp Message sent to {0} ").format(self.to), alert=True, indicator="green")
 				else:
-					frappe.msgprint(("Attachment sent to {0} ").format(self.to), alert=True)
+					frappe.msgprint(("Attachment sent to {0} ").format(self.to), alert=True, indicator="green")
 			return response.json()
 		else:
 			frappe.throw(response.json().get("error").get("message"))

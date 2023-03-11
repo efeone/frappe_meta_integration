@@ -1,0 +1,195 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-02-20 20:59:27.165572",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "campaign_name",
+  "campaign_date",
+  "message_type",
+  "column_break_dzbea",
+  "message_body",
+  "media_information_section",
+  "media_filename",
+  "media_caption",
+  "media_file",
+  "media_image",
+  "message_template_information_section",
+  "whatsapp_message_template",
+  "parameter_count",
+  "parameters",
+  "recipients_section",
+  "recipients",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "campaign_name",
+   "fieldtype": "Data",
+   "label": "Campaign Name"
+  },
+  {
+   "fieldname": "campaign_date",
+   "fieldtype": "Date",
+   "label": "Campaign Date",
+   "options": "Today"
+  },
+  {
+   "fieldname": "message_type",
+   "fieldtype": "Select",
+   "label": "message_type",
+   "options": "Text\nImage\nAudio\nVideo\nDocument\nTemplate"
+  },
+  {
+   "fieldname": "whatsapp_message_template",
+   "fieldtype": "Link",
+   "label": "WhatsApp Message Template",
+   "options": "WhatsApp Message Template"
+  },
+  {
+   "default": "WA-CMP-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "naming_series",
+   "options": "WA-CMP-.YYYY.-"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "WhatsApp Campaign",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "recipients_section",
+   "fieldtype": "Section Break",
+   "label": "Recipients"
+  },
+  {
+   "fieldname": "recipients",
+   "fieldtype": "Table",
+   "label": "Recipients",
+   "options": "WhatsApp Campaign Recipient",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.message_type==\"Template\"",
+   "fieldname": "message_template_information_section",
+   "fieldtype": "Section Break",
+   "label": "Message Template Information"
+  },
+  {
+   "fieldname": "parameter_count",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Parameter Count"
+  },
+  {
+   "fieldname": "parameters",
+   "fieldtype": "Table",
+   "label": "Parameters",
+   "options": "WhatsApp Message Template Item"
+  },
+  {
+   "depends_on": "eval:doc.message_type===\"Text\"",
+   "fieldname": "message_body",
+   "fieldtype": "Markdown Editor",
+   "label": "Message Body"
+  },
+  {
+   "depends_on": "eval:(doc.message_type!=\"Text\" && doc.message_type!=\"Template\")",
+   "fieldname": "media_information_section",
+   "fieldtype": "Section Break",
+   "label": "Media Information"
+  },
+  {
+   "depends_on": "eval:(doc.message_type == 'Document')",
+   "fieldname": "media_filename",
+   "fieldtype": "Data",
+   "label": "Media Filename"
+  },
+  {
+   "depends_on": "eval:(doc.message_type == 'Document' || doc.message_type == 'Image')",
+   "fieldname": "media_caption",
+   "fieldtype": "Data",
+   "label": "Media Caption"
+  },
+  {
+   "fieldname": "media_file",
+   "fieldtype": "Attach",
+   "label": "Media File"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Outgoing\"&&doc.message_type==\"Image\"",
+   "fieldname": "media_image",
+   "fieldtype": "Attach Image",
+   "label": "Media Image"
+  },
+  {
+   "fieldname": "column_break_dzbea",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-03-01 21:40:04.114908",
+ "modified_by": "Administrator",
+ "module": "WhatsApp",
+ "name": "WhatsApp Campaign",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Meta Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "if_owner": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Meta User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
