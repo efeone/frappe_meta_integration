@@ -11,7 +11,7 @@
   "preview_html",
   "section_break_3",
   "status",
-  "from",
+  "from_no",
   "to",
   "message_type",
   "column_break_3",
@@ -77,7 +77,7 @@
   },
   {
    "depends_on": "eval:doc.type===\"Incoming\"",
-   "fieldname": "from",
+   "fieldname": "from_no",
    "fieldtype": "Data",
    "label": "From"
   },
@@ -290,7 +290,7 @@
  "index_web_pages_for_search": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2023-03-01 21:46:25.554995",
+ "modified": "2023-03-18 21:46:25.554995",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Communication",

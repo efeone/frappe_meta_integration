@@ -50,7 +50,7 @@ function make_custom_buttons(frm){
 }
 
 function create_send_msg_button(frm){
-  if (!frm.doc.message_id) {
+  if (!frm.doc.message_id && frm.doc.type =='Outgoing') {
     const btn = frm.add_custom_button("Send Message", () => {
       frm.call({
           doc: frm.doc,
