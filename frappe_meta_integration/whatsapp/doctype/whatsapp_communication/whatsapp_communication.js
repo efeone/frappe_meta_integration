@@ -12,6 +12,9 @@ frappe.ui.form.on('WhatsApp Communication', {
             }
         }
     })
+    if(frm.doc.type == 'Incoming'){
+		    frm.disable_form();
+		}
   },
   refresh: function(frm) {
     if(!frm.is_new()){
@@ -21,6 +24,9 @@ frappe.ui.form.on('WhatsApp Communication', {
       let wrapper = frm.get_field("preview_html_rendered").$wrapper;
       wrapper.html(frm.doc.preview_html);
     }
+    if(frm.doc.type == 'Incoming'){
+		    frm.disable_form();
+		}
 	},
   whatsapp_message_template: function(frm){
     set_template_parameters(frm);
@@ -47,6 +53,7 @@ frappe.ui.form.on('WhatsApp Message Template Item', {
 function make_custom_buttons(frm){
   create_send_msg_button(frm);
   create_upload_media_button(frm);
+  create_download_media_button(frm);
 }
 
 function create_send_msg_button(frm){
@@ -98,6 +105,32 @@ function set_template_parameters(frm){
         }
         frm.save()
       }
+    });
+  }
+}
+
+function create_download_media_button(frm){
+  if (
+    frm.doc.type === "Incoming" &&
+    ["Image", "Video", "Audio", "Document"].includes(frm.doc.message_type) &&
+    !frm.doc.media_file
+  ) {
+    const btn = frm.add_custom_button("Download Attachment File", () => {
+      frm
+        .call({
+          doc: frm.doc,
+          method: "download_media",
+          btn,
+        })
+        .then((data) => {
+          const file = data.message;
+          frm.refresh();
+          frappe.msgprint({
+            title: "Attachment downloaded successfully.",
+            message: `Attachment File: <a href="${file.file_url}" target="_blank">${file.file_name}</a>`,
+            indicator: "green",
+          });
+        });
     });
   }
 }

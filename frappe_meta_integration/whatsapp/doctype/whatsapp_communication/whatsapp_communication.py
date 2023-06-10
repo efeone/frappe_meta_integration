@@ -4,8 +4,8 @@
 import frappe
 import requests
 import mimetypes
+from typing import Dict
 from six import string_types
-
 
 from frappe.model.document import Document
 
@@ -253,3 +253,105 @@ class WhatsAppCommunication(Document):
 		if media and file_name:
 			wa_msg.upload_media() #Upload Attachment
 		wa_msg.send_message() #Send Attachment/Text Message
+
+	def get_media_url(self):
+		if not self.media_id:
+			frappe.throw("`media_id` is missing.")
+
+		api_base = "https://graph.facebook.com/v13.0"
+		access_token = self.get_access_token()
+		response = requests.get(
+			f"{api_base}/{self.media_id}",
+			headers={
+				"Authorization": "Bearer " + access_token,
+			},
+		)
+
+		if not response.ok:
+			frappe.throw("Error fetching media URL")
+
+		return response.json().get("url")
+
+	@frappe.whitelist()
+	def download_media(self) -> Dict:
+		url = self.get_media_url()
+		access_token = self.get_access_token()
+		response = requests.get(
+			url,
+			headers={
+				"Authorization": "Bearer " + access_token,
+			},
+		)
+
+		file_name = get_media_extention(self, response.headers.get("Content-Type"))
+		file_doc = frappe.get_doc(
+			{
+				"doctype": "File",
+				"file_name": file_name,
+				"content": response.content,
+				"attached_to_doctype": "WhatsApp Communication",
+				"attached_to_name": self.name,
+				"attached_to_field": "media_file",
+			}
+		).insert(ignore_permissions=True)
+		frappe.db.commit()
+
+		self.set("media_file", file_doc.file_url)
+
+		# Will be used to display image preview
+		if self.message_type == "Image":
+			self.set("media_image", file_doc.file_url)
+
+		self.save()
+
+		return file_doc.as_dict()
+
+@frappe.whitelist()
+def update_message_status(status: Dict):
+	''' Method to updtae status of Message '''
+	message_id = status.get("id")
+	status = status.get("status")
+
+	if frappe.db.exists('WhatsApp Communication', {"message_id": message_id}):
+		frappe.db.set_value(
+			"WhatsApp Communication", {"message_id": message_id}, "status", status.title()
+		)
+		frappe.db.commit()
+
+@frappe.whitelist()
+def create_incoming_whatsapp_message(message: Dict):
+	''' Method to create Incoming messages via webhook '''
+	MEDIA_TYPES = ("image", "sticker", "document", "audio", "video")
+	message_type = message.get("type")
+	message_data = frappe._dict(
+		{
+			"doctype": "WhatsApp Communication",
+			"type": "Incoming",
+			"status": "Received",
+			"from_no": message.get("from"),
+			"message_id": message.get("id"),
+			"message_type": message_type.title(),
+		}
+	)
+
+	if message_type == "text":
+		message_data["message_body"] = message.get("text").get("body")
+	elif message_type in MEDIA_TYPES:
+		message_data["media_id"] = message.get(message_type).get("id")
+		message_data["media_mime_type"] = message.get(message_type).get("mime_type")
+		message_data["media_hash"] = message.get(message_type).get("sha256")
+
+	if message_type == "document":
+		message_data["media_filename"] = message.get("document").get("filename")
+		message_data["media_caption"] = message.get("document").get("caption")
+
+	if message_type == "image" or message_type == "video":
+		message_data["media_caption"] = message.get("document").get("caption")
+
+	message_doc = frappe.get_doc(message_data).insert(ignore_permissions=True)
+	frappe.db.commit()
+
+def get_media_extention(message_doc, content_type):
+	return message_doc.media_filename or (
+		"attachment_." + content_type.split(";")[0].split("/")[1]
+	)
