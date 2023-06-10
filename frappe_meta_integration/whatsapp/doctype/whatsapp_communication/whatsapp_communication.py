@@ -346,7 +346,7 @@ def create_incoming_whatsapp_message(message: Dict):
 		message_data["media_caption"] = message.get("document").get("caption")
 
 	if message_type == "image" or message_type == "video":
-		message_data["media_caption"] = message.get("document").get("caption")
+		message_data["media_caption"] = message.get(message_type).get("caption")
 
 	message_doc = frappe.get_doc(message_data).insert(ignore_permissions=True)
 	frappe.db.commit()
