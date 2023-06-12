@@ -15,6 +15,8 @@
   "language",
   "language_code",
   "category",
+  "header_has_media",
+  "media_type",
   "header",
   "footer",
   "is_existing_template",
@@ -101,6 +103,7 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval: doc.header_has_media == 0",
    "fieldname": "header",
    "fieldtype": "Data",
    "label": "Header"
@@ -121,12 +124,26 @@
    "fieldname": "is_existing_template",
    "fieldtype": "Check",
    "label": "Is Existing Template"
+  },
+  {
+   "depends_on": "header_has_media",
+   "fieldname": "media_type",
+   "fieldtype": "Select",
+   "label": "Media Type",
+   "mandatory_depends_on": "header_has_media",
+   "options": "document\nimage\nvideo"
+  },
+  {
+   "default": "0",
+   "fieldname": "header_has_media",
+   "fieldtype": "Check",
+   "label": "Header Has Media"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-12-12 13:13:05.037501",
+ "modified": "2023-03-01 21:37:18.914542",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Message Template",
@@ -143,6 +160,29 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "report": 1,
+   "role": "Meta User",
+   "select": 1,
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Meta Manager",
+   "select": 1,
    "share": 1,
    "submit": 1,
    "write": 1

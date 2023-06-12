@@ -1,0 +1,58 @@
+{
+ "actions": [],
+ "allow_copy": 1,
+ "autoname": "hash",
+ "creation": "2023-06-10 11:16:54.060320",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "payload"
+ ],
+ "fields": [
+  {
+   "fieldname": "payload",
+   "fieldtype": "JSON",
+   "label": "Payload",
+   "read_only": 1
+  }
+ ],
+ "in_create": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-06-10 12:44:07.995294",
+ "modified_by": "Administrator",
+ "module": "WhatsApp",
+ "name": "WhatsApp Webhook Log",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Meta Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

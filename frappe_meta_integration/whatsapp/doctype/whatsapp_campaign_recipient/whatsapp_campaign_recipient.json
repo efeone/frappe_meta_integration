@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-02-20 21:17:12.950291",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "whatsapp_number",
+  "person_name",
+  "whatsapp_communication",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "whatsapp_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "WhatsApp Number",
+   "options": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "person_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Person Name"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "whatsapp_communication",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "WhatsApp Communication",
+   "options": "WhatsApp Communication",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "whatsapp_communication",
+   "fetch_from": "whatsapp_communication.status",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Status",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-02-24 07:37:39.507310",
+ "modified_by": "Administrator",
+ "module": "WhatsApp",
+ "name": "WhatsApp Campaign Recipient",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
