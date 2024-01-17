@@ -99,7 +99,7 @@
    "fieldname": "category",
    "fieldtype": "Select",
    "label": "Category",
-   "options": "\nTRANSACTIONAL\nMARKETING\nOTP",
+   "options": "\nUTILITY\nMARKETING\nAUTHENTICATION",
    "reqd": 1
   },
   {
@@ -143,7 +143,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-03-01 21:37:18.914542",
+ "modified": "2024-01-16 12:09:14.455727",
  "modified_by": "Administrator",
  "module": "WhatsApp",
  "name": "WhatsApp Message Template",
